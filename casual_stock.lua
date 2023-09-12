@@ -1350,9 +1350,14 @@ local EnableBotToggle = BotTab:CreateToggle({
                                                 if m.Name == "PlacementContainer" then
                                                     for _, l in pairs(m:GetChildren()) do
                                                         if l.Name == "Container" then
-                                                            v.HumanoidRootPart.CFrame = CFrame.new(l.WorldPivot.Position)
-                                                            body_gyro.CFrame = v.HumanoidRootPart.CFrame
-                                                            task.wait(_G.PauseRate)
+                                                            local game_status = GetGameStatus()
+                                                            local backpack_amount = GetPlayerBackpackAmount()
+
+                                                            if _G.EnableBot == true and game_status == true and backpack_amount < 50 then
+                                                                v.HumanoidRootPart.CFrame = CFrame.new(l.WorldPivot.Position)
+                                                                body_gyro.CFrame = v.HumanoidRootPart.CFrame
+                                                                task.wait(_G.PauseRate)
+                                                            end
                                                         end
                                                     end
                                                 end
@@ -1374,8 +1379,6 @@ local EnableBotToggle = BotTab:CreateToggle({
 							task.wait(_G.PauseRate)
 						end
                     elseif v.Name == player_name and _G.EnableBot == true and (point_index >= table.getn(bot_points_vector) or GetGameStatus() == false or GetPlayerBackpackAmount() == 50) then
-                        point_index = 200
-
                         if _G.IsLegitMode == true then
                             v.Humanoid:MoveTo(bot_points_vector[4])
                             v.Humanoid.MoveToFinished:Wait()
@@ -1389,6 +1392,8 @@ local EnableBotToggle = BotTab:CreateToggle({
                             v.Humanoid:MoveTo(bot_points_vector[1])
                             v.Humanoid.MoveToFinished:Wait()
                         elseif _G.IsLegitMode == false then
+                            point_index = 200
+
                             v.HumanoidRootPart.CFrame = CFrame.new(0.4388207495212555, 181.46998596191406, 135.822998046875)
                             task.wait(2)
 
@@ -1415,7 +1420,7 @@ local EnableBotToggle = BotTab:CreateToggle({
                         end
 
                         repeat
-                            task.wait(10)
+                            task.wait(5)
                         until GetGameStatus() == true and GetPlayerBackpackAmount() == 0
 
                         point_index = 1
