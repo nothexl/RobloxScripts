@@ -1380,6 +1380,9 @@ local EnableBotToggle = BotTab:CreateToggle({
 						end
                     elseif v.Name == player_name and _G.EnableBot == true and (point_index >= table.getn(bot_points_vector) or GetGameStatus() == false or GetPlayerBackpackAmount() == 50) then
                         if _G.IsLegitMode == true then
+                            v.HumanoidRootPart.CFrame = CFrame.new(0.4388207495212555, 181.46998596191406, 135.822998046875)
+							task.wait(2)
+
                             v.Humanoid:MoveTo(bot_points_vector[4])
                             v.Humanoid.MoveToFinished:Wait()
 
