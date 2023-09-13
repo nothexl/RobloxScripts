@@ -1050,7 +1050,7 @@ local BuyToggle = MainTab:CreateToggle({
                     end
                 end
 
-                task.wait(0.05)
+                task.wait(0.25)
             end
         else
             _G.Buy = false
@@ -1292,6 +1292,8 @@ local EnableBotToggle = BotTab:CreateToggle({
 								v.Humanoid.MoveToFinished:Wait()
 								point_index = point_index + 1
 							end
+
+                            task.wait(_G.PauseRate)
 						elseif _G.IsLegitMode == false and _G.EnableBot == true and GetPlayerBackpackAmount() < 50 then
 							v.Humanoid.PlatformStand = true
 							local body_gyro = Instance.new("BodyGyro", v.HumanoidRootPart)
