@@ -1285,8 +1285,10 @@ local EnableBotToggle = BotTab:CreateToggle({
 			local point_index = 1
             while _G.EnableBot == true do
                 for i, v in pairs(game:GetService("Workspace"):GetDescendants()) do
-                    if v.Name == player_name and point_index < table.getn(bot_points_vector) and GetGameStatus() == true then
-						if _G.IsLegitMode == true and _G.EnableBot == true and GetPlayerBackpackAmount() < 50 then
+                    if v.Name == player_name and point_index < table.getn(bot_points_vector) and GetGameStatus() == true and GetPlayerBackpackAmount() < 50 then
+                        local backpack_amount = GetPlayerBackpackAmount()
+
+						if _G.IsLegitMode == true and _G.EnableBot == true and backpack_amount < 50 then
 							if v.Humanoid.MoveDirection == Vector3.zero then
 								v.Humanoid:MoveTo(bot_points_vector[point_index])
 								v.Humanoid.MoveToFinished:Wait()
@@ -1294,7 +1296,7 @@ local EnableBotToggle = BotTab:CreateToggle({
 							end
 
                             task.wait(_G.PauseRate)
-						elseif _G.IsLegitMode == false and _G.EnableBot == true and GetPlayerBackpackAmount() < 50 then
+						elseif _G.IsLegitMode == false and _G.EnableBot == true and backpack_amount < 50 then
 							v.Humanoid.PlatformStand = true
 							local body_gyro = Instance.new("BodyGyro", v.HumanoidRootPart)
 							body_gyro.P = 9e4
@@ -1380,7 +1382,7 @@ local EnableBotToggle = BotTab:CreateToggle({
 							body_gyro.CFrame = v.HumanoidRootPart.CFrame
 							task.wait(_G.PauseRate)
 						end
-                    elseif v.Name == player_name and _G.EnableBot == true and (point_index >= table.getn(bot_points_vector) or GetGameStatus() == false or GetPlayerBackpackAmount() == 50) then
+                    elseif (v.Name == player_name and _G.EnableBot == true) and (point_index >= table.getn(bot_points_vector) or GetGameStatus() == false or GetPlayerBackpackAmount() == 50) then
                         if _G.IsLegitMode == true then
                             v.HumanoidRootPart.CFrame = CFrame.new(0.4388207495212555, 181.46998596191406, 135.822998046875)
 							task.wait(2)
