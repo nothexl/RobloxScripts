@@ -1050,7 +1050,7 @@ local BuyToggle = MainTab:CreateToggle({
                     end
                 end
 
-                task.wait(0.15)
+                task.wait(0.25)
             end
         else
             _G.Buy = false
