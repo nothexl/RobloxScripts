@@ -1050,7 +1050,7 @@ local BuyToggle = MainTab:CreateToggle({
                     end
                 end
 
-                task.wait(0.35)
+                task.wait(0.25)
             end
         else
             _G.Buy = false
@@ -1352,11 +1352,11 @@ local EnableBotToggle = BotTab:CreateToggle({
 
                                             for _, m in pairs(n:GetChildren()) do
                                                 if m.Name == "PlacementContainer" then
+                                                    local game_status = GetGameStatus()
+                                                    local backpack_amount = GetPlayerBackpackAmount()
+
                                                     for _, l in pairs(m:GetChildren()) do
                                                         if l.Name == "Container" then
-                                                            local game_status = GetGameStatus()
-                                                            local backpack_amount = GetPlayerBackpackAmount()
-
                                                             if _G.EnableBot == true and game_status == true and backpack_amount < 50 then
                                                                 v.HumanoidRootPart.CFrame = CFrame.new(l.WorldPivot.Position)
                                                                 body_gyro.CFrame = v.HumanoidRootPart.CFrame
@@ -1378,7 +1378,7 @@ local EnableBotToggle = BotTab:CreateToggle({
 								end
 							end
                             
-							v.Humanoid.RootPart.CFrame = CFrame.new(2.75772405, 181.650009, 134.619278)
+							v.Humanoid.RootPart.CFrame = CFrame.new(0.4388207495212555, 181.46998596191406, 135.822998046875)
 							body_gyro.CFrame = v.HumanoidRootPart.CFrame
 							task.wait(_G.PauseRate)
 						end
